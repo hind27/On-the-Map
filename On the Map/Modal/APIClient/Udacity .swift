@@ -49,7 +49,7 @@ class Udacity {
                             do {
                      let jsonResponse = try JSONSerialization.jsonObject(with: data.subdata(with: NSMakeRange(5, data.length - 5)), options: [])
                          print(data)
-                                responseClosure(jsonResponse as! [String : AnyObject ], nil)
+                                responseClosure(jsonResponse as? [String : AnyObject ], nil)
                     }
                             catch {
                           responseClosure(nil, Errors.worngInfo)
