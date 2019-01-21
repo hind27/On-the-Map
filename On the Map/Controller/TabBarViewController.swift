@@ -32,6 +32,19 @@ class TabBarViewController: UITabBarController {
     @IBAction func AddLocation(_ sender: Any) {
         addLocation()
     }
+    
+    @IBAction func refershMap(_ sender: Any) {
+        refresh()
+    }
+    @IBAction func logoutMap(_ sender: Any) {
+        logoutClicked()
+    }
+    
+    @IBAction func Addlocation(_ sender: Any) {
+        logoutClicked()
+        
+        
+    }
     @objc func refresh() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
     }
@@ -90,7 +103,7 @@ class TabBarViewController: UITabBarController {
     
     
     private func FindLocation (){
-        let viewControlller = self.storyboard?.instantiateViewController(withIdentifier: "Add")
+        let viewControlller = self.storyboard?.instantiateViewController(withIdentifier:"Add")
         present(viewControlller!, animated: true, completion: nil)
     }
     

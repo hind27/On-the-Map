@@ -37,7 +37,7 @@ class FindLocationViewController: UIViewController {
             return
         }
         else {
-            performSegue(withIdentifier: "mapViewSegue", sender: self)
+            performSegue(withIdentifier:"mapViewSegue", sender: self)
         }
         /*guard let locationString = locationText.text, !locationString.isEmpty  else {
             alertWithError(error:"Location Not Found")

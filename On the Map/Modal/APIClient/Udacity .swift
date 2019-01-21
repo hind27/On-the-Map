@@ -47,8 +47,12 @@ class Udacity {
                         // Check weather the data returned is not nil
                 if let data = data {
                             do {
-                     let jsonResponse = try JSONSerialization.jsonObject(with: data.subdata(with: NSMakeRange(5, data.length - 5)), options: [])
-                         print(data)
+                                var newData = data as Data
+                                let range = Range(5..<newData.count)
+                                newData = newData.subdata(in: range)
+                                print(String(data: newData, encoding: .utf8)!)
+                               let jsonResponse = try JSONSerialization.jsonObject(with: newData, options: [])
+                         
                                 responseClosure(jsonResponse as? [String : AnyObject ], nil)
                     }
                             catch {
@@ -121,16 +125,17 @@ class Udacity {
                 responseClosure(nil, error)
                 return
             }
-            
-            //Unwrap the Json Dictionary
-            if let jsonResponseDic = jsonResponseDic
+            if let userInformation = jsonResponseDic
             {
-                let userInformation = jsonResponseDic[JSONResponseKeys.user] as? [String:AnyObject]
+
+            //Unwrap the Json Dictionary
+           // if let jsonResponseDic = jsonResponseDic
+            //{
+               // let userInformation = jsonResponseDic[JSONResponseKeys.user] as? [String:AnyObject]
                  
-                let firstName = userInformation![JSONResponseKeys.firstName] as? String
-                   let lastName = userInformation![JSONResponseKeys.lastName]   as? String
-                //if (lastName==nil){ lastName = ""  }
-                
+                let firstName = userInformation[JSONResponseKeys.firstName] as? String
+                let lastName = userInformation[JSONResponseKeys.lastName]   as? String
+          
                 responseClosure(StudentModel(uniqueKey: fromKey, firstName:firstName! , lastName: lastName! , mediaURL: ""), nil)
                 return
                 }

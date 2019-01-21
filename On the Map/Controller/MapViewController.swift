@@ -18,7 +18,7 @@ class MapViewController: UIViewController , MKMapViewDelegate {
     let datasource = StudentsDatasource.sharedDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        observe()
         datasource.GetStudentsLocations()
     }
     
@@ -36,7 +36,7 @@ class MapViewController: UIViewController , MKMapViewDelegate {
             annotations.append(annotation)
         }
         DispatchQueue.main.async {
-            self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(annotations)
             self.view.alpha = 1.0
         }

@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/Modal/APIClient/Udacity .swift"
-            timestampString = "569715388.621462"
+            filePath = "On the Map/View/StudentLocationCell.swift"
+            timestampString = "569803303.977944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "logout(responseClosure:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "configureStudentLocationCell(studentLocation:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/Modal/APIClient/Udacity .swift"
-            timestampString = "569715388.621695"
+            filePath = "On the Map/View/StudentLocationCell.swift"
+            timestampString = "569803303.9783289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "loginWithCredentials(username:password:facebookToken:responseClosure:)"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "configureStudentLocationCell(studentLocation:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,61 +41,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/Modal/APIClient/Udacity .swift"
-            timestampString = "569715388.621816"
+            filePath = "On the Map/Modal/APIResponse/StudentsDatasource.swift"
+            timestampString = "569801903.213946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "loginWithCredentials(username:password:facebookToken:responseClosure:)"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "GetStudentsLocations()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "On_the_Map.Udacity.loginWithCredentials(username: Swift.String, password: Swift.String, facebookToken: Swift.Optional&lt;Swift.String&gt;, responseClosure: (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "On the Map"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hind/Desktop/On%20the%20Map/On%20the%20Map/Modal/APIClient/Udacity%20.swift"
-                  timestampString = "569381265.290921"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "1087">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in On_the_Map.Udacity.loginWithCredentials(username: Swift.String, password: Swift.String, facebookToken: Swift.Optional&lt;Swift.String&gt;, responseClosure: (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "On the Map"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hind/Desktop/On%20the%20Map/On%20the%20Map/Modal/APIClient/Udacity%20.swift"
-                  timestampString = "569381265.293107"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/Modal/APIClient/Udacity .swift"
-            timestampString = "569715388.621927"
+            filePath = "On the Map/Modal/APIResponse/StudentsDatasource.swift"
+            timestampString = "569801903.214178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "makeRequestToUdacity(url:method:headers:body:responseClosure:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "GetStudentsLocations()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

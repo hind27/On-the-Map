@@ -8,21 +8,40 @@
 
 import UIKit
 
-class ImformtionTableViewController: UITableViewController {
+class ImformtionTableViewController: UITableViewController  {
   
     private let dataSource = StudentsDatasource.sharedDataSource()
    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        observe()
        dataSource.GetStudentsLocations()
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 0
+    func observe() {
+        // Observe Notifications
+        // here to be able to get the new data
+        NotificationCenter.default.addObserver(self, selector: #selector(studentLocationsUpdated), name: NSNotification.Name(rawValue:"Student Locations Pinned Down"), object: nil)
     }
+    
+    @objc func studentLocationsUpdated() {
+        DispatchQueue.main.async {
+             self.tableView.alpha = 1.0
+            self.tableView.reloadData()
+            
+        }}
+    
+    func alertWithError(error: String) {
+        let alertView = UIAlertController(title: "", message: error, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alertView, animated: true){
+            self.view.alpha = 1.0
+        }
+    }
+    // MARK: - Table view data source
+    
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
@@ -31,7 +50,7 @@ class ImformtionTableViewController: UITableViewController {
    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as!  StudentLocationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier:"cell", for: indexPath) as! StudentLocationCell
         let studentLocation = dataSource.studentLocations[indexPath.row]
         cell.configureStudentLocationCell(studentLocation: studentLocation)
         return cell
@@ -50,16 +69,6 @@ class ImformtionTableViewController: UITableViewController {
            alertWithError(error:"Cannot Open URL")
         }
     }
-    
-    func alertWithError(error: String) {
-        
-        self.view.alpha = 1.0
-        let alertView = UIAlertController(title: "", message: error, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title:"Dismiss", style:  .cancel, handler: nil))
-        self.present(alertView, animated: true){
-            self.view.alpha = 1.0
-        }
-        
-    }
+
    
 }
