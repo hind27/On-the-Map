@@ -156,8 +156,16 @@ extension LoginViewController: UITextFieldDelegate {
         return keyboardSize.cgRectValue.height
     }
     
-
- }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}
 
 private extension LoginViewController {
     
