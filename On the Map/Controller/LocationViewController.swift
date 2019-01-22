@@ -27,7 +27,21 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //Add the placemark on the location
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(location!) { (placemarkArr, error) in
+            
+            //Check for errors
+            if let _ = error {
+                self.alertWithError(error: "Could not geocode the string.")
+            } else if (placemarkArr?.isEmpty)! {
+                self.alertWithError(error: "No location found.")
+            } else {
+                self.setUIForState(.unloading)
+                self.mark = placemarkArr?.first
+                self.mapView?.showAnnotations([MKPlacemark(placemark: self.mark!)], animated: true)
+            }
+        }
     }
 
     @IBAction func submitClicked(_ sender: Any) {
@@ -40,7 +54,7 @@ class LocationViewController: UIViewController {
                 if let e = error {
                     self.alertWithError(error: e)
                 } else {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "studentLocationsPinnedDown"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "student Locations Pinned Down"), object: nil)
                     self.dataSource.student?.mediaURL = self.mediaURL!
                     self.dismiss(animated: true, completion: nil)
                 }

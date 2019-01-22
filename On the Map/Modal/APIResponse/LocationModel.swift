@@ -12,7 +12,6 @@ import MapKit
 
 struct LocationModel : Codable
   {
-    
     let latitude: Double
     let longitude: Double
     let mapString: String

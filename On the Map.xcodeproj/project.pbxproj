@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B31B24E021EE9B2B00722997 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31B24DF21EE9B2B00722997 /* NavViewController.swift */; };
-		B31B24E221EEA40800722997 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31B24E121EEA40800722997 /* TabBarViewController.swift */; };
 		B325C31F21ED68AE0000CBD7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B325C31E21ED68AE0000CBD7 /* MapKit.framework */; };
 		B325C32121ED6E730000CBD7 /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325C32021ED6E730000CBD7 /* FindLocationViewController.swift */; };
 		B325C32721ED76C00000CBD7 /* LocationTextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325C32621ED76C00000CBD7 /* LocationTextDelegate.swift */; };
@@ -31,8 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B31B24DF21EE9B2B00722997 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
-		B31B24E121EEA40800722997 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B325C31E21ED68AE0000CBD7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B325C32021ED6E730000CBD7 /* FindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
 		B325C32621ED76C00000CBD7 /* LocationTextDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextDelegate.swift; sourceTree = "<group>"; };
@@ -162,8 +158,6 @@
 				B333575721E6E0A000FD2856 /* MapViewController.swift */,
 				B325C32021ED6E730000CBD7 /* FindLocationViewController.swift */,
 				B36011F921E969B0008795EF /* ImformtionTableViewController.swift */,
-				B31B24DF21EE9B2B00722997 /* NavViewController.swift */,
-				B31B24E121EEA40800722997 /* TabBarViewController.swift */,
 				B3B5108421EFAA390085B791 /* LocationViewController.swift */,
 			);
 			path = Controller;
@@ -246,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B31B24E221EEA40800722997 /* TabBarViewController.swift in Sources */,
 				B325C32121ED6E730000CBD7 /* FindLocationViewController.swift in Sources */,
 				B360120621E97465008795EF /* Session.swift in Sources */,
 				B360120421E97304008795EF /* StudentLocationModel.swift in Sources */,
@@ -254,7 +247,6 @@
 				B360120021E96F28008795EF /* LocationModel.swift in Sources */,
 				B36011FC21E969F1008795EF /* StudentLocationCell.swift in Sources */,
 				B370C49121EAB353006E91BB /* StudentsDatasource.swift in Sources */,
-				B31B24E021EE9B2B00722997 /* NavViewController.swift in Sources */,
 				B36011FA21E969B0008795EF /* ImformtionTableViewController.swift in Sources */,
 				B360120821E97505008795EF /* Parse .swift in Sources */,
 				B325C32721ED76C00000CBD7 /* LocationTextDelegate.swift in Sources */,

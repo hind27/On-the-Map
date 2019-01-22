@@ -37,7 +37,7 @@ class FindLocationViewController: UIViewController {
             return
         }
         else {
-            performSegue(withIdentifier:"mapViewSegue", sender: self)
+           performSegue(withIdentifier:"mapViewSegue", sender: self)
         }
         /*guard let locationString = locationText.text, !locationString.isEmpty  else {
             alertWithError(error:"Location Not Found")
@@ -60,10 +60,12 @@ class FindLocationViewController: UIViewController {
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "mapViewSegue") {
-            let vc = segue.destination as! LocationViewController
+            if let nav = segue.destination as? UINavigationController, let vc = nav.topViewController as? LocationViewController{
+            //let indexPath = sender as! IndexPath
+          
             vc.location = locationText.text
             vc.mediaURL = websiteTextField.text
-            
+            }
         }
     }
     // MARK: Prepare for Segue

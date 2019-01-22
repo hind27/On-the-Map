@@ -279,19 +279,19 @@
                     <navigationItem key="navigationItem" title="OnThe Map" id="XFs-UX-EyK">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="sDq-Wu-uif">
                             <connections>
-                                <action selector="logoutMap:" destination="NUX-jN-HzL" id="49j-9f-zjN"/>
+                                <action selector="Logout:" destination="WfO-uc-T4v" id="oAo-WO-bga"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="FrD-u5-sVr">
                                 <connections>
-                                    <action selector="Addlocation:" destination="NUX-jN-HzL" id="dlT-je-XeE"/>
-                                    <segue destination="qkX-Nw-pTI" kind="show" action="showDetailViewController:sender:" id="8Vf-Mf-I9H"/>
+                                    <action selector="Addlocation:" destination="WfO-uc-T4v" id="rpJ-3R-SCR"/>
+                                    <segue destination="qkX-Nw-pTI" kind="show" identifier="Add" id="6RV-hO-L1F"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="fpf-zw-p3w">
                                 <connections>
-                                    <action selector="refershMap:" destination="NUX-jN-HzL" id="dly-Or-1gf"/>
+                                    <action selector="refersh:" destination="WfO-uc-T4v" id="bFq-tw-MxX"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -301,9 +301,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBM-Un-ya1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="NUX-jN-HzL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3921" y="-716"/>
+            <point key="canvasLocation" x="3322" y="-360"/>
         </scene>
         <!--Add Location-->
         <scene sceneID="pV9-8j-XvW">
@@ -344,7 +343,7 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzd-3c-S9u">
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="mapViewSegue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzd-3c-S9u">
                                         <rect key="frame" x="0.0" y="70" width="355" height="45"/>
                                         <color key="backgroundColor" red="0.003039766802" green="0.70342808960000003" blue="0.89494115110000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -361,6 +360,7 @@
                                         </variation>
                                         <connections>
                                             <action selector="Findlocation:" destination="elk-iM-8Vc" eventType="touchUpInside" id="WaD-Ou-oHu"/>
+                                            <segue destination="0lU-nm-qdn" kind="show" identifier="mapViewSegue" id="N55-rw-qWC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -446,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ply-2q-ccB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4851.7605633802814" y="412.5"/>
+            <point key="canvasLocation" x="4990" y="349"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="5uX-4q-g0R">
@@ -572,28 +572,26 @@
                     <navigationItem key="navigationItem" title="On The Map" id="zyf-m3-2Xs">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="klN-ZS-w7V">
                             <connections>
-                                <action selector="Logout:" destination="ioX-Ed-Ta9" id="ddD-gl-BOr"/>
+                                <action selector="logout:" destination="ZqG-Wg-tYR" id="aAE-v5-4Sd"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="jc1-pF-hVC">
                                 <connections>
-                                    <action selector="AddLocation:" destination="ioX-Ed-Ta9" id="Oid-Fv-4Pp"/>
-                                    <segue destination="qkX-Nw-pTI" kind="show" id="eFw-QZ-ffq"/>
+                                    <action selector="Addlocation:" destination="ZqG-Wg-tYR" id="yvZ-ur-bjM"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="Kp6-ky-zPJ">
                                 <connections>
-                                    <action selector="refersh:" destination="ioX-Ed-Ta9" id="TwP-G7-Q7t"/>
+                                    <action selector="refersh:" destination="ZqG-Wg-tYR" id="huj-WE-hcm"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUI-gd-2wI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ioX-Ed-Ta9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3255.0224887556224" y="344.80000000000001"/>
+            <point key="canvasLocation" x="3321" y="343"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="FzP-Jy-cLX">
@@ -651,7 +649,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaV-LM-CmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4078" y="349"/>
+            <point key="canvasLocation" x="4180" y="40"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="w2k-BA-Ajh">
@@ -678,16 +676,16 @@
         <!--Add Location-->
         <scene sceneID="LB1-Oi-h0C">
             <objects>
-                <viewController storyboardIdentifier="mapViewSegue" id="s5I-iP-1LR" customClass="LocationViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s5I-iP-1LR" customClass="LocationViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mum-It-48K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vR4-Mc-YID">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vR4-Mc-YID">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VTA-qO-mhb">
-                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <rect key="frame" x="167.5" y="264.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="lGh-qN-D1a"/>
                                     <constraint firstAttribute="height" constant="40" id="ret-fh-Pgx"/>
@@ -700,7 +698,7 @@
                                 </variation>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9P8-dN-2Lg">
-                                <rect key="frame" x="25" y="599" width="325" height="30"/>
+                                <rect key="frame" x="25" y="550" width="325" height="30"/>
                                 <color key="backgroundColor" red="0.003039766802" green="0.70342808960000003" blue="0.89494115110000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Finsh">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -775,7 +773,7 @@
                     <navigationItem key="navigationItem" title="Add Location" id="Aii-Po-ls0">
                         <barButtonItem key="leftBarButtonItem" title="Add Location" id="Kqj-yR-D5c">
                             <connections>
-                                <segue destination="elk-iM-8Vc" kind="show" id="jmJ-fU-EUX"/>
+                                <segue destination="elk-iM-8Vc" kind="show" id="Ttw-la-CUQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -787,7 +785,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKd-Id-ZWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5906.3999999999996" y="-406.14692653673166"/>
+            <point key="canvasLocation" x="6122" y="344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kb0-5Z-56E">
@@ -805,7 +803,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRg-SV-pgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5185" y="-405"/>
+            <point key="canvasLocation" x="6055" y="-506"/>
         </scene>
     </scenes>
     <resources>
@@ -816,7 +814,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Vf-Mf-I9H"/>
-        <segue reference="jmJ-fU-EUX"/>
+        <segue reference="nBY-PG-YPc"/>
     </inferredMetricsTieBreakers>
 </document>
