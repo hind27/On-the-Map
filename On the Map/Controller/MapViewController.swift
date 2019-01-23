@@ -98,7 +98,7 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
     
     func observe() {
         // Observe Notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(studentLocationsUpdated), name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(studentLocationsUpdated), name: NSNotification.Name("Student Locations Pinned Down"), object: nil)
     }
     
     

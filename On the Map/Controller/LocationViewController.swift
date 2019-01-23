@@ -57,7 +57,7 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
                 if let e = error {
                     self.alertWithError(error: e)
                 } else {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name("Student Locations Pinned Down"), object: nil)
                     self.dataSource.student?.mediaURL = self.mediaURL!
                     DispatchQueue.main.async(execute: {
                         //UI Related Function
@@ -72,7 +72,7 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
                 if let _ = error {
                     self.alertWithError(error: "Student location could not be posted.")
                 } else {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
+                    NotificationCenter.default.post(name: NSNotification.Name("Student Locations Pinned Down"), object: nil);
                     self.dataSource.student?.mediaURL = self.mediaURL!
                     DispatchQueue.main.async(execute: {
                         //UI Related Function
