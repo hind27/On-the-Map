@@ -28,8 +28,8 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
     }
     
     @IBAction func refersh(_ sender: Any) {
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
+       
+        NotificationCenter.default.post(name: NSNotification.Name("Student Locations Pinned Down"), object: nil);
         //Parse.updateStudentLocationWith()
     }
     @IBAction func Logout(_ sender: Any) {

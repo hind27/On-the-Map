@@ -59,7 +59,10 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil)
                     self.dataSource.student?.mediaURL = self.mediaURL!
-                    self.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: {
+                        //UI Related Function
+                        self.dismiss(animated: true, completion: nil)
+                    })
                    }
                 }
            }
