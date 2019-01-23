@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationViewController: UIViewController {
+class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerDelegate  {
   
     enum UIState { case loading, unloading }
     //MARK: Properties

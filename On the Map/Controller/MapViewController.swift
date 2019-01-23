@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController , MKMapViewDelegate {
+class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManagerDelegate  {
      //MARK: Properties
     let udacity = Udacity.sharedInstance()
     let datasource = StudentsDatasource.sharedDataSource()
@@ -41,7 +42,8 @@ class MapViewController: UIViewController , MKMapViewDelegate {
                 DispatchQueue.main.async{
                     self.alertWithError(error: error!, title: "Logout Error" )
                 } } }
-    }
+    
+       }
     
     
     
