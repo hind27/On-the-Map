@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class LocationViewController: UIViewController {
   
@@ -46,20 +47,22 @@ class LocationViewController: UIViewController {
 
     @IBAction func submitClicked(_ sender: Any) {
         //1- create location Object
+         ActivityControl.shared.show()
         let location = LocationModel(latitude: (mark?.location?.coordinate.latitude)!, longitude: (mark?.location?.coordinate.longitude)!, mapString: mediaURL!)
-        
+
+       
         //2-A if user has location before update with new one
-        if let objectId = objectId {
+        if let objectId = self.objectId {
             parse.updateStudentLocationWith(mediaURL: mediaURL!, studentData: StudentLocationModel(objectID: objectId, student: dataSource.student!, location: location)) { (success, error) in
                 if let e = error {
                     self.alertWithError(error: e)
                 } else {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "student Locations Pinned Down"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil)
                     self.dataSource.student?.mediaURL = self.mediaURL!
                     self.dismiss(animated: true, completion: nil)
+                   }
                 }
-            }
-        }
+           }
             //2-A if user hasn't location before post new one
         else {
             parse.postStudentsLocation(studentData: StudentLocationModel(student: dataSource.student!, location: location), mediaURL: mediaURL!) { (success, error) in
@@ -68,12 +71,12 @@ class LocationViewController: UIViewController {
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
                     self.dataSource.student?.mediaURL = self.mediaURL!
-                    self.dismiss(animated: true, completion: nil)
+                    //self.dismiss(animated: true, completion: nil)
                 }
             }
         }
     }
-    
+   // }
     func alertWithError(error: String) {
         self.view.alpha = 1.0
         let alertView = UIAlertController(title: "", message: error, preferredStyle: .alert)

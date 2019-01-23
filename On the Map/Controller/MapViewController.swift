@@ -28,6 +28,7 @@ class MapViewController: UIViewController , MKMapViewDelegate {
     
     @IBAction func refersh(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
+        //Parse.updateStudentLocationWith()
     }
     @IBAction func Logout(_ sender: Any) {
         udacity.logout(){ (success, error) in
@@ -125,12 +126,14 @@ class MapViewController: UIViewController , MKMapViewDelegate {
             
             return dropPinView
         }
-        
+  
+   
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if control == view.rightCalloutAccessoryView {
-                if let mediaURL = NSURL(string: ((view.annotation?.subtitle)!)!) {
-                    if UIApplication.shared.canOpenURL(mediaURL as URL) {
-                        UIApplication.shared.open(mediaURL as URL)
+
+                if let mediaURL = URL(string: ((view.annotation?.subtitle)!)!){
+                    if UIApplication.shared.canOpenURL(mediaURL) {
+                        UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
                     } else {
                         alertWithError(error:"Cannot Open URL")
                     }

@@ -17,6 +17,8 @@ struct StudentLocationModel  {
     
     
     init(dictionary: [String : AnyObject]) {
+        
+        
         objectID = dictionary[Parse.JSONResponseKeys.objectID] as? String ?? ""
         
         // Fill StudentModel Data
