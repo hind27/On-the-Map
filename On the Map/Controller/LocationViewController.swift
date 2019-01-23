@@ -47,7 +47,7 @@ class LocationViewController: UIViewController {
 
     @IBAction func submitClicked(_ sender: Any) {
         //1- create location Object
-         ActivityControl.shared.show()
+        
         let location = LocationModel(latitude: (mark?.location?.coordinate.latitude)!, longitude: (mark?.location?.coordinate.longitude)!, mapString: mediaURL!)
 
        
@@ -71,12 +71,16 @@ class LocationViewController: UIViewController {
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
                     self.dataSource.student?.mediaURL = self.mediaURL!
-                    //self.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: {
+                        //UI Related Function
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    
                 }
             }
         }
     }
-   // }
+
     func alertWithError(error: String) {
         self.view.alpha = 1.0
         let alertView = UIAlertController(title: "", message: error, preferredStyle: .alert)

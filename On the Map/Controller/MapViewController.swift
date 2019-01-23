@@ -27,6 +27,7 @@ class MapViewController: UIViewController , MKMapViewDelegate {
     }
     
     @IBAction func refersh(_ sender: Any) {
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
         //Parse.updateStudentLocationWith()
     }
