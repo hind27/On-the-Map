@@ -23,8 +23,10 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         observe()
         datasource.GetStudentsLocations()
+        
     }
     
     @IBAction func refersh(_ sender: Any) {

@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class FindLocationViewController: UIViewController {
     
     private let parse = Parse.sharedInstance()
     private let dataSource = StudentsDatasource.sharedDataSource()
-    var objectId: String? = nil
+    private var mark: CLPlacemark?
     
     @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,48 +30,38 @@ class FindLocationViewController: UIViewController {
    
     @IBAction func Findlocation(_ sender: Any) {
         // Check if location textfield is empty or not.
-        if (locationText.text?.isEmpty)! {
+        if (locationText.text?.isEmpty)! && websiteTextField.text!.isEmpty {
             alertWithError(error:"Location Not Found")
             return
-        }
-        // check for empty media url
-        if websiteTextField.text!.isEmpty {
-            alertWithError(error: "Location Not Found")
-            return
-        }
-        else {
-           performSegue(withIdentifier:"mapViewSegue", sender: self)
-        }
-        /*guard let locationString = locationText.text, !locationString.isEmpty  else {
-            alertWithError(error:"Location Not Found")
-       
-        }
-        guard let url = websiteTextField.text, !url.isEmpty else {
-            alertWithError(error:"Location Not Found")
-            
-        }
-        // check for empty media url
-        if (!url.contains("https://")) {
-            alertWithError(error:"Location Not Found")
-            
-        }
-        else {
-            performSegue(withIdentifier:"mapViewSegue", sender: self)
-        }*/
-    }
+        }else{
+             //Add the placemark on the location
+            let locationstring = locationText.text
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(locationstring!) { (placemarkArr, error) in
+                //Check for errors
+                if let _ = error {
+                    self.alertWithError(error: "Could not geocode the string.")
+                } else if (placemarkArr?.isEmpty)! {
+                    self.alertWithError(error: "No location found.")
+                } else {
+                    self.mark = placemarkArr?.first
+                    self.segueTomap()
+                }
+            }}}
     
-   
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "mapViewSegue") {
-            if let nav = segue.destination as? UINavigationController, let vc = nav.topViewController as? LocationViewController{
-            //let indexPath = sender as! IndexPath
-          
-            vc.location = locationText.text
-            vc.mediaURL = websiteTextField.text
-            }
+    private func segueTomap() {
+        // Start location on map
+        let storyboard = UIStoryboard (name: "Main", bundle: nil)
+        if  let resultVC = storyboard.instantiateViewController(withIdentifier:"mapViewSegue") as? UINavigationController, let vc = resultVC.topViewController as? LocationViewController {
+              vc.location = locationText.text
+              vc.mark = mark
+              vc.mediaURL = websiteTextField.text
+               self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    // MARK: Prepare for Segue
+        
+    
+    
 
     func alertWithError(error: String) {
         

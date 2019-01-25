@@ -21,29 +21,18 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submit: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    private var mark: CLPlacemark? = nil
+    //private var mark: CLPlacemark? = nil
+    var mark : CLPlacemark?
     var location : String?
     var mediaURL : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //Add the placemark on the location
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(location!) { (placemarkArr, error) in
-            
-            //Check for errors
-            if let _ = error {
-                self.alertWithError(error: "Could not geocode the string.")
-            } else if (placemarkArr?.isEmpty)! {
-                self.alertWithError(error: "No location found.")
-            } else {
-                self.setUIForState(.unloading)
-                self.mark = placemarkArr?.first
-                self.mapView?.showAnnotations([MKPlacemark(placemark: self.mark!)], animated: true)
-            }
-        }
+        self.setUIForState(.loading)
+        self.mapView?.showAnnotations([MKPlacemark(placemark:mark!)], animated: true)
+        self.setUIForState(.unloading)
     }
+    
 
     @IBAction func submitClicked(_ sender: Any) {
         //1- create location Object
@@ -84,6 +73,12 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
         }
     }
 
+    @IBAction func Addlocation(_ sender: Any) {
+        if let controller =  self.storyboard?.instantiateViewController(withIdentifier:"Add") {
+            self.present(controller, animated: true, completion: nil)
+        }}
+    
+    
     func alertWithError(error: String) {
         self.view.alpha = 1.0
         let alertView = UIAlertController(title: "", message: error, preferredStyle: .alert)

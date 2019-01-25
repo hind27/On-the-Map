@@ -156,8 +156,8 @@
 			children = (
 				B333574321E6AFF100FD2856 /* LoginViewController.swift */,
 				B333575721E6E0A000FD2856 /* MapViewController.swift */,
-				B325C32021ED6E730000CBD7 /* FindLocationViewController.swift */,
 				B36011F921E969B0008795EF /* ImformtionTableViewController.swift */,
+				B325C32021ED6E730000CBD7 /* FindLocationViewController.swift */,
 				B3B5108421EFAA390085B791 /* LocationViewController.swift */,
 			);
 			path = Controller;

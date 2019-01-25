@@ -360,7 +360,6 @@
                                         </variation>
                                         <connections>
                                             <action selector="Findlocation:" destination="elk-iM-8Vc" eventType="touchUpInside" id="WaD-Ou-oHu"/>
-                                            <segue destination="0lU-nm-qdn" kind="show" identifier="mapViewSegue" id="N55-rw-qWC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -750,6 +749,7 @@
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="constraints">
+                                <exclude reference="Esw-VM-exK"/>
                                 <exclude reference="Ilw-D7-e3c"/>
                                 <include reference="PZA-NI-xln"/>
                                 <include reference="RKa-LM-n0O"/>
@@ -757,7 +757,6 @@
                                 <exclude reference="f3i-zj-KQc"/>
                                 <include reference="olM-Qn-Hdt"/>
                                 <exclude reference="vc7-c9-rpX"/>
-                                <exclude reference="Esw-VM-exK"/>
                                 <include reference="3pM-04-5mD"/>
                                 <exclude reference="P1r-GG-MrK"/>
                                 <include reference="eKY-Ae-mLE"/>
@@ -773,7 +772,7 @@
                     <navigationItem key="navigationItem" title="Add Location" id="Aii-Po-ls0">
                         <barButtonItem key="leftBarButtonItem" title="Add Location" id="Kqj-yR-D5c">
                             <connections>
-                                <segue destination="elk-iM-8Vc" kind="show" id="Ttw-la-CUQ"/>
+                                <action selector="Addlocation:" destination="s5I-iP-1LR" id="y3R-M6-XV0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -785,12 +784,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKd-Id-ZWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6120.8000000000002" y="342.85714285714289"/>
+            <point key="canvasLocation" x="5948" y="-416"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kb0-5Z-56E">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0lU-nm-qdn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mapViewSegue" automaticallyAdjustsScrollViewInsets="NO" id="0lU-nm-qdn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2in-eF-790">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -803,7 +802,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRg-SV-pgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6055" y="-506"/>
+            <point key="canvasLocation" x="5070" y="-416"/>
         </scene>
     </scenes>
     <resources>
@@ -813,7 +812,4 @@
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Ttw-la-CUQ"/>
-    </inferredMetricsTieBreakers>
 </document>

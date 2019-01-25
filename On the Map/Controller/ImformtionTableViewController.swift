@@ -24,7 +24,7 @@ class ImformtionTableViewController: UITableViewController  {
     func observe() {
         // Observe Notifications
         // here to be able to get the new data
-        NotificationCenter.default.addObserver(self, selector: #selector(studentLocationsUpdated), name: NSNotification.Name(rawValue:"Student Locations Pinned Down"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(studentLocationsUpdated), name: NSNotification.Name("Student Locations Pinned Down"), object: nil)
     }
     
     @objc func studentLocationsUpdated() {
@@ -61,7 +61,7 @@ class ImformtionTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let studentURL = datasource.studentLocations[indexPath.row].student.mediaURL
         //guard let studentLocation = CurrentSessionData.shared.studentLocations?[indexPath.row], let mediaUrl = studentLocation.mediaURL, !mediaUrl.isEmpty else {
-            //AlertHelper.showAlert(in: self, withTitle: "Error", message: ErrorMessage.couldNotOpenURL.rawValue)
+        
         // Check if it exists & proceed accordingly
         if let studentMediaURL = URL(string: studentURL), UIApplication.shared.canOpenURL(studentMediaURL) {
             // Open URL
@@ -84,7 +84,7 @@ class ImformtionTableViewController: UITableViewController  {
                 } } }
     }
     @IBAction func refersh(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Student Locations Pinned Down"), object: nil);
+        NotificationCenter.default.post(name: NSNotification.Name("Student Locations Pinned Down"), object: nil);
     }
     
     
@@ -128,10 +128,6 @@ class ImformtionTableViewController: UITableViewController  {
             alertView.addAction(UIAlertAction(title: AlertActions.overWrite, style: .default, handler: completionClosure))
             self.present(alertView, animated: true, completion: nil)
         }
-    
-    
-    
-    
     
     
     
