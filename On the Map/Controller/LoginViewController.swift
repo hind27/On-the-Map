@@ -28,17 +28,17 @@ class LoginViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Do any additional setup after loading the view, typically from a nib.
         subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
         subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
         subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
         subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-         unsubscribeFromAllNotifications()
+        unsubscribeFromAllNotifications()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -49,24 +49,24 @@ class LoginViewController: UIViewController{
         userEmail.delegate = self
         userPassword.delegate = self
     }
-     // MARK: Login
+    // MARK: Login
     @IBAction func Login(_ sender: Any) {
         if userEmail.text!.isEmpty || userPassword.text!.isEmpty {
-                debugTextLabel.text = "Username or Password Empty."
+            debugTextLabel.text = "Username or Password Empty."
         } else {
-           // Set UI State
+            // Set UI State
             setUIForState(.Login)
             udacity.loginWithCredentials(username:userEmail.text!, password:userPassword.text!) { (userKey, error) in
-                 DispatchQueue.main.async {                    //Check for user key
+                DispatchQueue.main.async {                    //Check for user key
                     if let userKey = userKey {
                         self.udacity.fetchStudentData(fromKey: userKey) { (student, error) in
-                           DispatchQueue.main.async {
-                            if let student = student {
-                                  self.datasource.student = student
-                                  self.completeLogin()
+                            DispatchQueue.main.async {
+                                if let student = student {
+                                    self.datasource.student = student
+                                    self.completeLogin()
                                 } else {
                                     self.alertWithError(error: error!)
-                            }     }}
+                                }     }}
                     } else {
                         self.alertWithError(error: error!)
                     }
@@ -74,14 +74,14 @@ class LoginViewController: UIViewController{
             }
         }
     }
-
-   
+    
+    
     private func completeLogin() {
         // Start Home Screen
-
+        
         if let controller =  self.storyboard?.instantiateViewController(withIdentifier:"ShowMap") {
-        present(controller, animated: true, completion: nil)
-       }
+            present(controller, animated: true, completion: nil)
+        }
     }
     @IBAction func signUpPressed(_ sender: Any) {
         guard let url = URL(string: "https://auth.udacity.com/sign-up") else { return }
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController{
     }
     
     private func setEnabled(enabled: Bool){
-       activityIndicator.isHidden = enabled
+        activityIndicator.isHidden = enabled
         loginButton.isEnabled = enabled
         userEmail.isEnabled = enabled
         userPassword.isEnabled = enabled
@@ -113,30 +113,30 @@ class LoginViewController: UIViewController{
     
     
     private func alertWithError(error: String) {
-            
-            let alertView = UIAlertController(title:"Login Error", message: error, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title:"Dismiss", style: .cancel) {
-                UIAlertAction in
-                self.setUIForState(.Normal)
-            }
-            alertView.addAction(cancelAction)
-            self.present(alertView, animated: true){
-            }
-    
+        
+        let alertView = UIAlertController(title:"Login Error", message: error, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title:"Dismiss", style: .cancel) {
+            UIAlertAction in
+            self.setUIForState(.Normal)
+        }
+        alertView.addAction(cancelAction)
+        self.present(alertView, animated: true){
+        }
+        
     }
 }
-    
-    
+
+
 extension LoginViewController: UITextFieldDelegate {
     
     // MARK: Show/Hide Keyboard
     
     @objc func keyboardWillShow(_ notification: Notification) {
-            if !keyboardOnScreen {
-                view.frame.origin.y -= getKeyboardHeight(notification)
-               iconImageView.isHidden = true
-            }
+        if !keyboardOnScreen {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            iconImageView.isHidden = true
         }
+    }
     
     
     @objc func keyboardWillHide(_ notification: Notification) {
@@ -149,7 +149,7 @@ extension LoginViewController: UITextFieldDelegate {
     @objc func keyboardDidHide(_ notification: Notification) {
         keyboardOnScreen = false
     }
-
+    
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
@@ -177,7 +177,5 @@ private extension LoginViewController {
         NotificationCenter.default.removeObserver(self)
     }
 }
-
-
 
 

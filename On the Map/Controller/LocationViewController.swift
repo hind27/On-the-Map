@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerDelegate  {
-  
+    
     enum UIState { case loading, unloading }
     //MARK: Properties
     private let parse = Parse.sharedInstance()
@@ -25,7 +25,7 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
     var mark : CLPlacemark?
     var location : String?
     var mediaURL : String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUIForState(.loading)
@@ -33,13 +33,13 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
         self.setUIForState(.unloading)
     }
     
-
+    
     @IBAction func submitClicked(_ sender: Any) {
         //1- create location Object
         
         let location = LocationModel(latitude: (mark?.location?.coordinate.latitude)!, longitude: (mark?.location?.coordinate.longitude)!, mapString: mediaURL!)
-
-       
+        
+        
         //2-A if user has location before update with new one
         if let objectId = self.objectId {
             parse.updateStudentLocationWith(mediaURL: mediaURL!, studentData: StudentLocationModel(objectID: objectId, student: dataSource.student!, location: location)) { (success, error) in
@@ -52,9 +52,9 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
                         //UI Related Function
                         self.dismiss(animated: true, completion: nil)
                     })
-                   }
                 }
-           }
+            }
+        }
             //2-A if user hasn't location before post new one
         else {
             parse.postStudentsLocation(studentData: StudentLocationModel(student: dataSource.student!, location: location), mediaURL: mediaURL!) { (success, error) in
@@ -72,7 +72,7 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
             }
         }
     }
-
+    
     @IBAction func Addlocation(_ sender: Any) {
         if let controller =  self.storyboard?.instantiateViewController(withIdentifier:"Add") {
             self.present(controller, animated: true, completion: nil)
@@ -103,5 +103,5 @@ class LocationViewController: UIViewController ,MKMapViewDelegate, CLLocationMan
             submit?.isEnabled = true
             self.view.alpha = 1.0
         }}
-
+    
 }

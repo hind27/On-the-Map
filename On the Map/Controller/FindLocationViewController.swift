@@ -18,7 +18,7 @@ class FindLocationViewController: UIViewController {
     
     @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +26,15 @@ class FindLocationViewController: UIViewController {
         websiteTextField.delegate = self
         // Do any additional setup after loading the view.
     }
-
-   
+    
+    
     @IBAction func Findlocation(_ sender: Any) {
         // Check if location textfield is empty or not.
         if (locationText.text?.isEmpty)! && websiteTextField.text!.isEmpty {
             alertWithError(error:"Location Not Found")
             return
         }else{
-             //Add the placemark on the location
+            //Add the placemark on the location
             let locationstring = locationText.text
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(locationstring!) { (placemarkArr, error) in
@@ -53,16 +53,12 @@ class FindLocationViewController: UIViewController {
         // Start location on map
         let storyboard = UIStoryboard (name: "Main", bundle: nil)
         if  let resultVC = storyboard.instantiateViewController(withIdentifier:"mapViewSegue") as? UINavigationController, let vc = resultVC.topViewController as? LocationViewController {
-              vc.location = locationText.text
-              vc.mark = mark
-              vc.mediaURL = websiteTextField.text
-               self.navigationController?.pushViewController(vc, animated: true)
+            vc.location = locationText.text
+            vc.mark = mark
+            vc.mediaURL = websiteTextField.text
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-        
-    
-    
-
     func alertWithError(error: String) {
         
         self.view.alpha = 1.0
@@ -72,12 +68,12 @@ class FindLocationViewController: UIViewController {
             self.view.alpha = 1.0
         }
     }
-
+    
     @IBAction func actionDismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-
+    
 }
 
 extension FindLocationViewController: UITextFieldDelegate {
@@ -87,5 +83,5 @@ extension FindLocationViewController: UITextFieldDelegate {
         return true
     }
     
-   
+    
 }

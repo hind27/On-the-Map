@@ -9,18 +9,18 @@
 import UIKit
 
 class ImformtionTableViewController: UITableViewController  {
-  
+    
     let udacity = Udacity.sharedInstance()
     let datasource = StudentsDatasource.sharedDataSource()
     let parse = Parse.sharedInstance()
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         observe()
         datasource.GetStudentsLocations()
     }
-
+    
     func observe() {
         // Observe Notifications
         // here to be able to get the new data
@@ -29,7 +29,7 @@ class ImformtionTableViewController: UITableViewController  {
     
     @objc func studentLocationsUpdated() {
         DispatchQueue.main.async {
-             self.tableView.alpha = 1.0
+            self.tableView.alpha = 1.0
             self.tableView.reloadData()
             
         }}
@@ -44,37 +44,35 @@ class ImformtionTableViewController: UITableViewController  {
     // MARK: - Table view data source
     
     
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+        
         return datasource.studentLocations.count
     }
-   
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"cell", for: indexPath) as! StudentLocationCell
         let studentLocation = datasource.studentLocations[indexPath.row]
         cell.configureStudentLocationCell(studentLocation: studentLocation)
         return cell
-       
+        
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let studentURL = datasource.studentLocations[indexPath.row].student.mediaURL
-        //guard let studentLocation = CurrentSessionData.shared.studentLocations?[indexPath.row], let mediaUrl = studentLocation.mediaURL, !mediaUrl.isEmpty else {
-        
         // Check if it exists & proceed accordingly
         if let studentMediaURL = URL(string: studentURL), UIApplication.shared.canOpenURL(studentMediaURL) {
             // Open URL
             UIApplication.shared.open(studentMediaURL)
         } else {
             // Return with Error
-           alertWithError(error:"Cannot Open URL")
+            alertWithError(error:"Cannot Open URL")
         }
     }
-
+    
     @IBAction func logout(_ sender: Any) {
         udacity.logout(){ (success, error) in
-            if success == true {
+            if success {
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -106,44 +104,43 @@ class ImformtionTableViewController: UITableViewController  {
                         self.FindLocation()
                     } } } }
     }
-    
-    
+
     private func FindLocation (){
         let viewControlller = self.storyboard?.instantiateViewController(withIdentifier:"Add")
         present(viewControlller!, animated: true, completion: nil)
     }
     
+    struct Alert {
+        static let LoginAlertTitle = "Login Error"
+        static let LogoutAlertTitle = "Logout Error"
+        static let overWriteAlert = "Overwrite Location?"
+        static let overWriteMessage = "You've already posted a pin. Would you like to overwrite it?"
+    }
     
-        private func alertWithError(error: String, title: String) {
-            
-            let alertView = UIAlertController(title: title, message: error, preferredStyle: .alert)
-            alertView.addAction(UIAlertAction(title: AlertActions.dismiss, style: .cancel, handler: nil))
-            self.present(alertView, animated: true){
-                self.view.alpha = 1.0
-            }
-        }
-        private func overwriteAlert(completionClosure: @escaping (UIAlertAction) -> Void){
-            let alertView = UIAlertController(title: Alert.overWriteAlert, message: Alert.overWriteMessage, preferredStyle: .alert)
-            alertView.addAction(UIAlertAction(title: AlertActions.cancel, style: .cancel, handler: nil))
-            alertView.addAction(UIAlertAction(title: AlertActions.overWrite, style: .default, handler: completionClosure))
-            self.present(alertView, animated: true, completion: nil)
-        }
+    //MARK: Alert Actions
     
+    struct AlertActions {
+        static let dismiss = "Dismiss"
+        static let overWrite = "Overwrite"
+        static let cancel = "Cancel"
+    }
     
-    
-        struct Alert {
-            static let LoginAlertTitle = "Login Error"
-            static let LogoutAlertTitle = "Logout Error"
-            static let overWriteAlert = "Overwrite Location?"
-            static let overWriteMessage = "You've already posted a pin. Would you like to overwrite it?"
-        }
+}
+extension  ImformtionTableViewController
+{
+    private func alertWithError(error: String, title: String) {
         
-        //MARK: Alert Actions
-        
-        struct AlertActions {
-            static let dismiss = "Dismiss"
-            static let overWrite = "Overwrite"
-            static let cancel = "Cancel"
+        let alertView = UIAlertController(title: title, message: error, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: AlertActions.dismiss, style: .cancel, handler: nil))
+        self.present(alertView, animated: true){
+            self.view.alpha = 1.0
         }
+    }
+    private func overwriteAlert(completionClosure: @escaping (UIAlertAction) -> Void){
+        let alertView = UIAlertController(title: Alert.overWriteAlert, message: Alert.overWriteMessage, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: AlertActions.cancel, style: .cancel, handler: nil))
+        alertView.addAction(UIAlertAction(title: AlertActions.overWrite, style: .default, handler: completionClosure))
+        self.present(alertView, animated: true, completion: nil)
+    }
     
 }

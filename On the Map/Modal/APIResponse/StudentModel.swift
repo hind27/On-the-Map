@@ -26,14 +26,4 @@ struct StudentModel : Codable
         self.lastName = lastName
         self.mediaURL = mediaURL
     }
-    /*init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.firstName = try container.decodeIfPresent(String.self, forKey: .firstName) ?? "John"
-        self.lastName = try container.decodeIfPresent(String.self, forKey: .lastName) ?? "Smith"
-        self.mediaURL = try container.decodeIfPresent(String.self, forKey: .mediaURL) ?? "www.hh.com"
-        self.uniqueKey = try container.decodeIfPresent(String.self, forKey: .uniqueKey) ?? "3903878747"
-        
-    }*/
-    
-
 }

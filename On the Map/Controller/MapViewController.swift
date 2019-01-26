@@ -11,7 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManagerDelegate  {
-     //MARK: Properties
+   
+    //MARK: Properties
     let udacity = Udacity.sharedInstance()
     let datasource = StudentsDatasource.sharedDataSource()
     let parse = Parse.sharedInstance()
@@ -19,20 +20,18 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
     
     @IBOutlet weak var mapView: MKMapView!
     
-   
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         observe()
         datasource.GetStudentsLocations()
-        
     }
     
     @IBAction func refersh(_ sender: Any) {
-       
+        
         NotificationCenter.default.post(name: NSNotification.Name("Student Locations Pinned Down"), object: nil);
-        //Parse.updateStudentLocationWith()
     }
     @IBAction func Logout(_ sender: Any) {
         udacity.logout(){ (success, error) in
@@ -43,9 +42,10 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
             } else {
                 DispatchQueue.main.async{
                     self.alertWithError(error: error!, title: "Logout Error" )
-                } } }
-    
-       }
+                   }
+            }
+        }
+    }
     
     
     
@@ -92,7 +92,7 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
             annotations.append(annotation)
         }
         DispatchQueue.main.async {
-        self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(annotations)
             self.view.alpha = 1.0
         }
@@ -113,38 +113,38 @@ class MapViewController: UIViewController , MKMapViewDelegate, CLLocationManager
             self.view.alpha = 1.0
         }
     }
-        
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            
-            let reuseId = "pin"
-            var dropPinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-            
-            if dropPinView == nil {
-                dropPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                dropPinView!.canShowCallout = true
-                dropPinView!.pinTintColor = UIColor.red
-                dropPinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            }
-            else {
-                dropPinView!.annotation = annotation
-            }
-            
-            return dropPinView
+        
+        let reuseId = "pin"
+        var dropPinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if dropPinView == nil {
+            dropPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            dropPinView!.canShowCallout = true
+            dropPinView!.pinTintColor = UIColor.red
+            dropPinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
-  
-   
+        else {
+            dropPinView!.annotation = annotation
+        }
+        
+        return dropPinView
+    }
+    
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-            if control == view.rightCalloutAccessoryView {
-
-                if let mediaURL = URL(string: ((view.annotation?.subtitle)!)!){
-                    if UIApplication.shared.canOpenURL(mediaURL) {
-                        UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
-                    } else {
-                        alertWithError(error:"Cannot Open URL")
-                    }
+        if control == view.rightCalloutAccessoryView {
+            
+            if let mediaURL = URL(string: ((view.annotation?.subtitle)!)!){
+                if UIApplication.shared.canOpenURL(mediaURL) {
+                    UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
+                } else {
+                    alertWithError(error:"Cannot Open URL")
                 }
             }
         }
+    }
     
     private func alertWithError(error: String, title: String) {
         
