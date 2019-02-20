@@ -43,17 +43,11 @@ class Session {
     
     func makeRequest(Url: URL, requestMethod: HTTPMethod, requestHeaders: [String:String]? = nil, requestBody: [String:AnyObject]? = nil, responseClosure: @escaping (NSData?, String?) -> Void){
         
-        /*let request = NSMutableURLRequest(url: URLFromParameters(parametersWithApiKey, withPathExtension: method))
-         request.httpMethod = "POST"
-         request.addValue("application/json", forHTTPHeaderField: "Accept")
-         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-         request.httpBody = jsonBody.data(using: String.Encoding.utf8)
-         */
-            // Create request from passed URL
+ 
+        // Create request from passed URL
         var request = URLRequest(url: Url)
         request.httpMethod = requestMethod.rawValue
-        //request.httpBody = requestBody.data(using: String.Encoding.utf8)
-        //request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: .utf8)
+        
         // Add headers if present
         if let requestHeaders = requestHeaders {
             for (key, value) in requestHeaders {
@@ -63,7 +57,7 @@ class Session {
         
         // Add body if present
         if let requestBody = requestBody {
-            //request.httpBody = requestBody.data(using: String.Encoding.utf8)
+            
             request.httpBody = try! JSONSerialization.data(withJSONObject: requestBody, options: JSONSerialization.WritingOptions())
         }
         
